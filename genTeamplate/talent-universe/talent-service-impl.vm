@@ -1,0 +1,96 @@
+## filename=${context.classNamePascal}ServiceImpl.java, folder=service.impl
+#set($serviceClass="${context.classNamePascal}Service")
+#set($mapperClass="${context.classNamePascal}Mapper")
+#set($mapperObj="${context.classNameCamel}Mapper")
+#set($entityClass="${context.classNamePascal}")
+#set($entityObj="${context.classNameCamel}")
+package ${context.packageName}.service.impl;
+import ${context.packageName}.service.${serviceClass};
+
+import ${context.packageName}.model.${entityClass};
+import ${context.packageName}.vo.${entityClass}VO;
+import ${context.packageName}.mapper.${mapperClass};
+import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Slf4j
+@Service
+public class ${serviceClass}Impl implements ${serviceClass} {
+
+    @Autowired
+    private ${mapperClass} ${mapperObj};
+
+    /**
+     * 查询所有记录
+     *
+     * @return 返回集合，没有返回空List
+     */
+    public List<${entityClass}VO> listAll() {
+    	return ${mapperObj}.listAll();
+    }
+
+
+    /**
+     * 根据主键查询
+     *
+     * @param ${pk.javaFieldName} 主键
+     * @return 返回记录，没有返回null
+     */
+    public ${entityClass}VO getById(${pk.javaTypeBox} ${pk.javaFieldName}) {
+    	return ${mapperObj}.getById(${pk.javaFieldName});
+    }
+	
+    /**
+     * 新增，插入所有字段
+     *
+     * @param ${entityObj} 新增的记录
+     * @return 返回影响行数
+     */
+    public Integer insert(${entityClass} ${entityObj}) {
+    	return ${mapperObj}.insert(${entityObj});
+    }
+	
+    /**
+     * 新增，忽略null字段
+     *
+     * @param ${entityObj} 新增的记录
+     * @return 返回影响行数
+     */
+    public Integer insertIgnoreNull(${entityClass} ${entityObj}) {
+    	return ${mapperObj}.insertIgnoreNull(${entityObj});
+    }
+	
+    /**
+     * 修改，修改所有字段
+     *
+     * @param ${entityObj} 修改的记录
+     * @return 返回影响行数
+     */
+    public Integer update(${entityClass} ${entityObj}) {
+    	return ${mapperObj}.update(${entityObj});
+    }
+	
+    /**
+     * 修改，忽略null字段
+     *
+     * @param ${entityObj} 修改的记录
+     * @return 返回影响行数
+     */
+    public Integer updateIgnoreNull(${entityClass} ${entityObj}) {
+    	return ${mapperObj}.updateIgnoreNull(${entityObj});
+    }
+	
+    /**
+     * 删除记录
+     *
+     * @param ${entityObj} 待删除的记录
+     * @return 返回影响行数
+     */
+    public Integer delete(${entityClass} ${entityObj}) {
+    	return ${mapperObj}.delete(${entityObj});
+    }
+	
+}

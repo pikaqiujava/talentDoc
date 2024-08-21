@@ -1,0 +1,72 @@
+## filename=${context.classNamePascal}Service.java, folder=service
+#set($serviceClass="${context.classNamePascal}Service")
+#set($mapperClass="${context.classNamePascal}Mapper")
+#set($mapperObj="${context.classNameCamel}Mapper")
+#set($entityClass="${context.classNamePascal}")
+#set($entityObj="${context.classNameCamel}")
+package ${context.packageName}.service;
+
+import ${context.packageName}.model.${entityClass};
+import ${context.packageName}.vo.${entityClass}VO;
+
+import java.util.List;
+
+public interface ${serviceClass} {
+
+    /**
+     * 查询所有记录
+     *
+     * @return 返回集合，没有返回空List
+     */
+    List<${entityClass}VO> listAll();
+
+
+    /**
+     * 根据主键查询
+     *
+     * @param ${pk.javaFieldName} 主键
+     * @return 返回记录，没有返回null
+     */
+    ${entityClass}VO getById(${pk.javaTypeBox} ${pk.javaFieldName});
+	
+    /**
+     * 新增，插入所有字段
+     *
+     * @param ${entityObj} 新增的记录
+     * @return 返回影响行数
+     */
+    Integer insert(${entityClass} ${entityObj});
+	
+    /**
+     * 新增，忽略null字段
+     *
+     * @param ${entityObj} 新增的记录
+     * @return 返回影响行数
+     */
+    Integer insertIgnoreNull(${entityClass} ${entityObj});
+	
+    /**
+     * 修改，修改所有字段
+     *
+     * @param ${entityObj} 修改的记录
+     * @return 返回影响行数
+     */
+    Integer update(${entityClass} ${entityObj});
+	
+    /**
+     * 修改，忽略null字段
+     *
+     * @param ${entityObj} 修改的记录
+     * @return 返回影响行数
+     */
+    Integer updateIgnoreNull(${entityClass} ${entityObj});
+	
+    /**
+     * 删除记录
+     *
+     * @param ${entityObj} 待删除的记录
+     * @return 返回影响行数
+     */
+    Integer delete(${entityClass} ${entityObj});
+	
+}

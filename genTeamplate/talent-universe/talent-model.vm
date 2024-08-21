@@ -1,0 +1,47 @@
+## filename=${context.classNamePascal}.java, folder=model
+package ${context.packageName}.model;
+
+import com.talent.crows.common.model.BaseModel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+
+#if(${table.hasDateField})
+import java.util.Date;
+#end
+#if(${table.hasLocalDateField})
+import java.time.LocalDate;
+#end
+#if(${table.hasLocalDateTimeField})
+import java.time.LocalDateTime;
+#end
+#if(${table.hasBigDecimalField})
+import java.math.BigDecimal;
+#end
+
+#if( "${table.comment}" != "" )
+/**
+ * ${table.comment}
+ */
+#end
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ${context.javaBeanName} extends BaseModel implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
+	public static final String DISTRIBUTED_ID_KEY = "talent-universe";
+
+#foreach($column in $columns)
+#if( "${column.comment}" != "" )
+	/** ${column.comment} */
+#end
+	private ${column.javaTypeBox} ${column.javaFieldName};
+    
+#end
+}

@@ -1,0 +1,18 @@
+## filename=${context.classNamePascal}FeignController.java, folder=feign.controller
+#set($feignClient="${context.classNamePascal}FeignClient")
+#set($controllerClass="${context.classNamePascal}FeignController")
+package ${context.packageName}.feign;
+
+import com.talent.crows.api.biz.feign.${feignClient};
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author ${context.author}
+ */
+@RestController()
+@Tag(name = "${table.comment}-feign")
+public class ${controllerClass} implements ${feignClient}{
+
+    
+}

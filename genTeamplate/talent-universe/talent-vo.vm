@@ -1,0 +1,51 @@
+## filename=${context.javaBeanName}VO.java, folder=vo
+#set($entityClass="${context.classNamePascal}")
+package ${context.packageName}.vo;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import com.talent.crows.common.vo.BaseVO;
+
+#if(${table.hasDateField})
+import java.util.Date;
+#end
+#if(${table.hasLocalDateField})
+import java.time.LocalDate;
+#end
+#if(${table.hasLocalDateTimeField})
+import java.time.LocalDateTime;
+#end
+#if(${table.hasBigDecimalField})
+import java.math.BigDecimal;
+#end
+
+/**
+ * ${table.tableName}VO
+#if("$!{table.comment}" != "")
+ * 备注：${table.comment}VO
+#end
+ *
+ * @author ${context.author}
+ */
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ${entityClass}VO extends BaseVO {
+
+    private static final long serialVersionUID = 1L;
+
+#foreach($column in $columns)
+#if("$!{column.comment}" != "")
+    /** 
+     * ${column.comment}
+     */
+#end
+	@Schema(description = "${column.comment}" )
+    private ${column.javaTypeBox} ${column.javaFieldName};
+
+#end
+}

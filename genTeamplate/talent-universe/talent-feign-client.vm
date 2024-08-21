@@ -1,0 +1,14 @@
+## filename=${context.classNamePascal}FeignClient.java, folder=feign
+#set($feignClientContext="${context.classNamePascal}")
+#set($feignClientClass="${context.classNamePascal}FeignClient")
+#set($entityClass="${context.classNamePascal}")
+#set($entityObj="${context.classNameCamel}")
+package ${context.packageName}.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(value = "talent-universe",contextId = "${entityObj}")
+public interface ${feignClientClass} {
+
+    
+}
